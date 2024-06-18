@@ -50,7 +50,6 @@ describe('Spread API Endpoints', () => {
         .set('Accept', 'application/json');
       const response = await request(app).get('/spreads/polling');
       const responseBody: ServiceResponse<Spread[]> = response.body;
-      console.log(responseBody);
 
       // Assert
       expect(response.statusCode).toEqual(StatusCodes.OK);
@@ -67,15 +66,14 @@ describe('Spread API Endpoints', () => {
         .send(alertPayload)
         .set('Content-Type', 'application/json')
         .set('Accept', 'application/json');
-      const response = await request(app).get('/spreads/polling/BTC-USD');
+      const response = await request(app).get('/spreads/polling/BTC-CLP');
       const responseBody: ServiceResponse<Spread> = response.body;
 
-      console.log(responseBody);
       // Assert
       expect(response.statusCode).toEqual(StatusCodes.OK);
       expect(responseBody.success).toBeTruthy();
-      expect(responseBody.message).toContain('Spreads calculated');
-      expect(responseBody.responseObject.marketId).toEqual('BTC-USD');
+      expect(responseBody.message).toContain('Spread calculated');
+      expect(responseBody.responseObject.marketId).toEqual('BTC-CLP');
     });
   });
 });

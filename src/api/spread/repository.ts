@@ -19,15 +19,12 @@ export const spreadRepository = {
     const responses = await Promise.all(promises);
     responses.forEach((response, index) => {
       const orderBook = adaptOrderBook(markets[index].id, response.data);
-      if (orderBook.market === 'BTC-ARS') {
-        console.log(response.data);
-      }
       orderBooks.push(orderBook);
     });
     return orderBooks;
   },
   getOrderbyMarket: async (marketId: string): Promise<OrderBook> => {
-    const orderBook = await axios.get<OrderBookBudaApi>(`/markets/${marketId}/order_book`);
+    const orderBook = await axios.get<OrderBookBudaApi>(`/markets/${marketId.toLocaleLowerCase()}/order_book`);
     return adaptOrderBook(marketId, orderBook.data);
   },
 };

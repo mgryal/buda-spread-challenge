@@ -12,9 +12,6 @@ export const spreadHelper = {
       orderBook.bids[0].price
     );
 
-    console.log('Minimum Ask:', minimumAsk);
-    console.log('Maximum Bid:', maximumBid);
-    console.log('Spread:', minimumAsk - maximumBid);
     const spread = minimumAsk - maximumBid;
     return spread;
   },
